@@ -4,12 +4,15 @@ import { AppService } from './app.service';
 import { BooksModule } from './books/books.module';
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     BooksModule,
     AuthModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/raftlabDB')
+    MongooseModule.forRoot(process.env.MONGO_URL)
   ],
   controllers: [AppController],
   providers: [AppService],
