@@ -55,7 +55,9 @@ export class AuthService {
     }
     delete user.password;
     const tokenPayload = { _id, firstName, lastName, email, country, role };
-    const authToken = await this.jwtService.sign(tokenPayload);
+    const authToken = await this.jwtService.sign(tokenPayload, {
+      secret: process.env.jwt_SECRET,
+    });
     return { authToken };
   }
 }
