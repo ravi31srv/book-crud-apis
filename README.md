@@ -1,29 +1,29 @@
 # NestJs Simple Book-APP
 
-If don't want to follow the steps given below and just want to explore the final out then this application is hosted on AWS ec2. You can hit the [Swagger URL](http://3.111.219.124:5000/Doc) to play with APIs.
+If don't want to follow the steps given below and just want to explore the final output then this application is hosted on AWS ec2 instance. You can hit the [Swagger URL](http://3.111.219.124:5000/Doc) to play with APIs.
+
 
 
 ***Getting Started***
 
-**Installation** 
 
-**Clone the repository**
++ **Clone the repository**
 
   > git clone https://github.com/ravi31srv/book-crud-apis.git
 
-**switch to the repo folder**
++ **Switch to the repo folder**
 
   > cd book-crud-apis
 
-**checkout into development branch**
++ **Checkout into development branch**
 
   > git checkout development
 
-**Install dependencies**
++ **Install dependencies**
   
    > npm install
 
-**add .env file at the root level of direcory**
++ **Add .env file at the root level of direcory**
 
 .env file example 
 ```Dotenv
@@ -35,11 +35,13 @@ JWT_EXPIRATION_TIME='1d'
 PORT=5000
 
 ```
++ After installing dependencies & adding required env variables in .env file start the application using following command :
 
-After installing dependencies & adding required env variables in .env file start the application using following command :
-
-> npm start
+    > npm start
  
+
+
+
 **Authantication**
 
 This aplication used JSON Web Token to handle authentication. Then token is passed with each protected requet endpoints using the Authorization header.
@@ -47,7 +49,8 @@ This aplication used JSON Web Token to handle authentication. Then token is pass
 
 **Swagger Documentation**
 
-This project uses the Nestjs swagger module for API documentation.
+This project uses the Nestjs swagger module for API documentation. 
+[Documentation URL](http://3.111.219.124:5000/Doc)
 
 
 
