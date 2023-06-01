@@ -33,7 +33,7 @@ export class BooksController {
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private readonly booksService: BooksService,
-  ) {}
+  ) { }
 
   //Insert book record.
   @ApiResponse({
@@ -67,7 +67,8 @@ export class BooksController {
 
       if (result?.pageNumber != pageNumber || result?.pageSize != pageSize) {
         result = await this.booksService.findAll(pageNumber, pageSize);
-        await this.cacheManager.set('data', result, 100000);
+
+        await this.cacheManager.set('data', result, +process.env.CACHE_TIMER);
       }
       return {
         data: result,

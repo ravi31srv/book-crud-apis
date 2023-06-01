@@ -13,7 +13,7 @@ export class AuthService {
   constructor(
     @InjectModel('User') private userModel: Model<userDocument>,
     private jwtService: JwtService,
-  ) {}
+  ) { }
 
   async validateJwt(token: any) {
     return await this.jwtService.verify(token);
@@ -32,7 +32,10 @@ export class AuthService {
         'User already exist with provided email or mobileNo',
       );
     }
-    userDto.password = await bcrypt.hash(userDto.password, 12);
+    userDto.password = await bcrypt.hash(
+      userDto.password,
+      process.env.JWT_ROUNDS,
+    );
     const user = await this.userModel.create(userDto);
 
     return user._id;
@@ -48,7 +51,7 @@ export class AuthService {
     const { _id, firstName, lastName, password, email, country, role } = user;
     const areEqual = await bcrypt.compare(loginDto.password, password);
     if (!areEqual) {
-      throw new BadRequestException(`Incorrect password `);
+      throw new BadRequestException(`Incorrect password`);
     }
     delete user.password;
     const tokenPayload = { _id, firstName, lastName, email, country, role };

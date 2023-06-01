@@ -28,7 +28,7 @@ export class BooksService {
     const skip = +pageSize * (+pageNumber - 1);
     const totalBooks = await this.bookModel.countDocuments();
     const books = await this.bookModel.find().limit(+pageSize).skip(+skip);
-    return { bookDetails  : books , totalPages : totalBooks/pageSize, pageNumber : +pageNumber , pageSize: +pageSize };
+    return { bookDetails  : books , totalPages : Math.ceil(totalBooks/pageSize), pageNumber : +pageNumber , pageSize: +pageSize };
     }
 
 // Service to get perticuler book by it's _id.
