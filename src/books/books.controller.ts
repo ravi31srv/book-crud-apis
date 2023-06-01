@@ -99,7 +99,7 @@ export class BooksController {
   @Roles(useRoles.user)
   @Patch(':id')
   async update(
-    @Param('id') id: string,
+    @Param() id: string,
     @Body() updateBookDto: UpdateBookDto,
     @Req() req: any,
   ): Promise<ReturnValue<any>> {

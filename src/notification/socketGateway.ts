@@ -28,15 +28,15 @@ export class notificationGateway {
   @SubscribeMessage('bookAdded')
   handleBookAddEvent(_client: Socket, data: any) {
     this.server.emit('notifyBookAdd', {
-      msg: `New book named ${data.name} added.`,
+      msg: `New book named ${data?.name} added.`,
     });
   }
 
   //To notify user about the status change of the book
   @SubscribeMessage('statusChangedByUser')
   handleStatusChaneEvent(client: Socket, data: any) {
-    this.server.to(client.id).emit('notifySatusChanger', {
-      msg: `Status of the book with _id ${data.bookId} has been updated.`,
+    this.server.to(client?.id).emit('notifySatusChanger', {
+      msg: `Status of the book with _id ${data?.bookId} has been updated.`,
     });
   }
 
@@ -44,7 +44,7 @@ export class notificationGateway {
   @SubscribeMessage('bookRemoved')
   handleBookDeleteEvent(_client: Socket, data: any) {
     this.server.emit('notifyBookRemoved', {
-      msg: `Book with name ${data.book} deleted.`,
+      msg: `Book with name ${data?.book} deleted.`,
     });
   }
 
