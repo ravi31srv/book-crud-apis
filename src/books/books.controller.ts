@@ -22,10 +22,17 @@ import { Cache } from 'cache-manager';
 import { RolesGuard } from 'src/helpers/roleGuard';
 import { Roles } from 'src/decorators/roles';
 import { useRoles } from 'src/auth/userModel';
-import { ApiResponse, ApiTags, ApiBearerAuth } from '@nestjs/swagger';
+import {
+  ApiResponse,
+  ApiTags,
+  ApiBearerAuth,
+  ApiOperation,
+  ApiQuery,
+} from '@nestjs/swagger';
 
 @ApiTags('Book CRUD')
 @ApiResponse({ status: 400, description: 'BAD_REQUEST' })
+@ApiResponse({ status: HttpStatus.INTERNAL_SERVER_ERROR })
 @UseGuards(AuthGuard, RolesGuard)
 @Controller('books')
 export class BooksController {
@@ -36,13 +43,17 @@ export class BooksController {
   ) { }
 
   //Insert book record.
+  @ApiOperation({
+    description: `User having 'admin' as their role can add a new book through this endpoint.`,
+    summary: 'Add new book',
+  })
   @ApiResponse({
     status: HttpStatus.CREATED,
     description: 'Book added successfully.',
   })
   @ApiBearerAuth()
   @Post()
-  @Roles(useRoles.admin) //user having 'admin' role only can perform this operation.
+  @Roles(useRoles.admin) //User having 'admin' role only can perform this operation.
   async create(
     @Body() createBookDto: CreateBookDto,
   ): Promise<ReturnValue<any>> {
@@ -55,12 +66,18 @@ export class BooksController {
   }
 
   //Get list of Books
+  @ApiOperation({
+    description: `Users having 'user' as their role can get the list of books with pagination.`,
+    summary: 'Get book details.',
+  })
   @Roles(useRoles.user)
   @ApiBearerAuth()
+  @ApiQuery({ name: 'pageNumber', required: false })
+  @ApiQuery({ name: 'pageSize', required: false })
   @Get()
   async findAll(
-    @Query('pageNumber') pageNumber: number,
-    @Query('pageSize') pageSize: number,
+    @Query('pageNumber') pageNumber?: number,
+    @Query('pageSize') pageSize?: number,
   ): Promise<ReturnValue<any>> {
     try {
       let result: any = await this.cacheManager.get('data');
@@ -80,6 +97,11 @@ export class BooksController {
     }
   }
 
+
+  @ApiOperation({
+    description: `Users having 'user' as their role can get single book's details.`,
+    summary: 'Get book by _id',
+  })
   @Roles(useRoles.user)
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<ReturnValue<any>> {
@@ -96,6 +118,10 @@ export class BooksController {
   }
 
   // Update status of the book using value 'issued' or 'available'
+  @ApiOperation({
+    description: `Users having 'user' as their role can change the status of the book.`,
+    summary: 'Update status of the book.',
+  })
   @Roles(useRoles.user)
   @Patch(':id')
   async update(
@@ -112,6 +138,10 @@ export class BooksController {
   }
 
   // To remove book from db by admin
+  @ApiOperation({
+    description: `Users having 'admin' as their role can delete the book by this endpoint.`,
+    summary: 'Delete book.',
+  })
   @Roles(useRoles.admin)
   @Delete(':id')
   async remove(@Param('id') id: string): Promise<ReturnValue<any>> {
