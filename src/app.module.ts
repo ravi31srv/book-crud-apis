@@ -9,7 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose';
   imports: [
     BooksModule,
     AuthModule,
-    MongooseModule.forRoot(process.env.MONGO_URLA),
+    MongooseModule.forRoot('mongodb://localhost:27017/raftlabDB')
   ],
   controllers: [AppController],
   providers: [AppService],
