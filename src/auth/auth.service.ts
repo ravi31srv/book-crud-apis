@@ -34,7 +34,7 @@ export class AuthService {
     }
     userDto.password = await bcrypt.hash(
       userDto.password,
-      process.env.JWT_ROUNDS,
+      +process.env.JWT_ROUNDS,
     );
     const user = await this.userModel.create(userDto);
 
