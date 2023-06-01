@@ -1,4 +1,4 @@
-# NestJs Simple Book--APP
+# NestJs Simple Book-APP
 
 If don't want to follow the steps given below and just want to explore the final out then this application is hosted on AWS ec2. You can hit the [Swagger URL](http://3.111.219.124:5000/Doc) to play with APIs.
 
@@ -41,10 +41,12 @@ After installing dependencies & adding required env variables in .env file start
 > npm start
  
 **Authantication**
+
 This aplication used JSON Web Token to handle authentication. Then token is passed with each protected requet endpoints using the Authorization header.
 
 
 **Swagger Documentation**
+
 This project uses the Nestjs swagger module for API documentation.
 
 
