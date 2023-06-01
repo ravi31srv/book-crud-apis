@@ -45,15 +45,30 @@ PORT=5000
    This aplication used JSON Web Token to handle authentication. Then token is passed with each protected requet endpoints using the Authorization header.
 
 
-+ **Postman collection**
-
-   https://file.io/BN6D51pggWbU
-
 
 + **Swagger Documentation**
 
     This project uses the Nestjs swagger module for API documentation. 
     [Documentation URL](http://3.111.219.124:5000/Doc)
+    
+ 
++ **Postman collection**
+
+   https://file.io/BN6D51pggWbU 
+
+
++ **Socket.io connection**
+    - In postman open new request 
+    - Select Socket.io as a request type from the top-left corner of the request (As show in image below )
+    - Listen for the event mentioned in the images
+    - Click the Connect button
+  
+  
+  
+  
+  
+  <img width="639" alt="image" src="https://github.com/ravi31srv/book-crud-apis/assets/34208768/648f6e67-d4c3-4560-a47d-2482ae3f4f0a">
+
 
 
 
