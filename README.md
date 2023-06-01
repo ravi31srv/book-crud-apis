@@ -39,18 +39,21 @@ PORT=5000
 
     > npm start
  
+ 
++ **Authantication**
+
+   This aplication used JSON Web Token to handle authentication. Then token is passed with each protected requet endpoints using the Authorization header.
 
 
++ **Postman collection**
 
-**Authantication**
-
-This aplication used JSON Web Token to handle authentication. Then token is passed with each protected requet endpoints using the Authorization header.
+   https://file.io/BN6D51pggWbU
 
 
-**Swagger Documentation**
++ **Swagger Documentation**
 
-This project uses the Nestjs swagger module for API documentation. 
-[Documentation URL](http://3.111.219.124:5000/Doc)
+    This project uses the Nestjs swagger module for API documentation. 
+    [Documentation URL](http://3.111.219.124:5000/Doc)
 
 
 
