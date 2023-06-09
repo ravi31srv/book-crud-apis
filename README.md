@@ -1,6 +1,6 @@
 # NestJs Simple Book-APP
 
-If don't want to follow the steps given below and just want to explore the final output then this application is hosted on AWS ec2 instance. You can hit the [Swagger URL](http://3.111.219.124:5000/Doc) to play with APIs.
+If don't want to follow the steps given below and just want to explore the final output then this application is hosted on AWS ec2 instance. You can hit the [Swagger URL](http://13.127.176.145:5000/Doc) to play with APIs.
 
 **_Getting Started_**
 
@@ -45,7 +45,7 @@ PORT=5000
 - **Swagger Documentation**
 
   This project uses the Nestjs swagger module for API documentation.
-  [Documentation URL](http://3.111.219.124:5000/Doc)
+  [Documentation URL](http://13.127.176.145:5000/Doc)
 
 - **Postman collection**
 
